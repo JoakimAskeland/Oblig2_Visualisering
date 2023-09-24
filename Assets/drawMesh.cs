@@ -50,6 +50,8 @@ public class NewBehaviourScript : MonoBehaviour
                 MeshRenderer meshRenderer = meshObject.AddComponent<MeshRenderer>();   
                 meshFilter.mesh = mesh;
                 meshRenderer.material = material;
+
+                mesh.RecalculateNormals();
             }
             else
             {

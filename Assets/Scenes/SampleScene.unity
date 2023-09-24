@@ -314,8 +314,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 330585543}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.048, y: 0.488, z: -12.96}
+  m_LocalRotation: {x: -0.09790793, y: 0.9016931, z: -0.28369027, w: -0.31126103}
+  m_LocalPosition: {x: 5.338185, y: 4.287342, z: 6.0137897}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -591,6 +591,7 @@ GameObject:
   - component: {fileID: 1698418801}
   - component: {fileID: 1698418800}
   - component: {fileID: 1698418803}
+  - component: {fileID: 1698418804}
   m_Layer: 0
   m_Name: Sphere
   m_TagString: Untagged
@@ -657,8 +658,8 @@ Transform:
   m_GameObject: {fileID: 1698418799}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 1.98, y: 3.65, z: 1.5}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalPosition: {x: 3.86, y: 0.827, z: -1.891}
+  m_LocalScale: {x: 0.3, y: 0.3, z: 0.3}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
@@ -670,19 +671,41 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1698418799}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 496439daea9744343ba9bc9548d1ba1b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   gravity: -9.81
   friction: 0.1
+  mass: 1
   velocity: {x: 0, y: 0, z: 0}
   angularVelocity: {x: 0, y: 0, z: 0}
   acceleration: {x: 0, y: 0, z: 0}
+  TriangleNumber: 1
   ball: {fileID: 1698418799}
   trianglePlane: {fileID: 1295689582}
   trianglePoints: []
+--- !u!114 &1698418804
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1698418799}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 56e91e79f4346804c85d5ed3e84c70b1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ball: {fileID: 0}
+  trianglePlane: {fileID: 0}
+  trianglePoints: []
+  TriangleNumber: 1
+  gravity: {x: 0, y: -9.81, z: 0}
+  mass: 1
+  acceleration: {x: 0, y: 0, z: 0}
+  velocity: {x: 0, y: 0, z: 0}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0

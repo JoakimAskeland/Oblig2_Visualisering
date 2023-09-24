@@ -7,10 +7,12 @@ public class RollingBall : MonoBehaviour
 {
     public float gravity = -9.81f;
     public float friction = 0.1f; // Tilpass
+    public float mass = 1f;
     [SerializeField] private Vector3 velocity = Vector3.zero;
     [SerializeField] private Vector3 angularVelocity = Vector3.zero;
     [SerializeField] private Vector3 acceleration = Vector3.zero;
-    private Vector3 triangleNormal; 
+    private Vector3 triangleNormal;
+    [SerializeField] private int TriangleNumber = 1;
 
     public GameObject ball;
     public GameObject trianglePlane;
@@ -67,6 +69,13 @@ public class RollingBall : MonoBehaviour
             Vector3 v1 = trianglePoints[i + 1];
             Vector3 v2 = trianglePoints[i + 2];
 
+            if (TriangleNumber < trianglePoints.Count / 3) 
+            {
+                //Debug.Log("Triangle " + TriangleNumber);
+                TriangleNumber++;
+            }
+
+
             Vector3 v0v1 = v1 - v0;
             Vector3 v0v2 = v2 - v0;
             Vector3 v0bp = ballPosition - v0;
@@ -90,14 +99,17 @@ public class RollingBall : MonoBehaviour
                 Debug.Log("Ball is inside triangle");
 
                 triangleNormal = Vector3.Cross(v1 - v0, v2 - v0);
-                float triangleNormalScalar = triangleNormal.magnitude;
+                //float triangleNormalScalar = triangleNormal.magnitude;
 
-                Debug.Log("triangleNormal: " + triangleNormal);
+                //Debug.Log("triangleNormal: " + triangleNormal);
+                //Debug.Log("triangleNormalScalar: " + triangleNormalScalar);
+                //Debug.Log("acc1: " + acceleration);
 
-                acceleration = gravity * new Vector3(triangleNormal.x * triangleNormal.y, triangleNormal.y * triangleNormal.y - 1f, triangleNormal.z * triangleNormal.y);
+                acceleration = Vector3.Scale(new Vector3(0.0f, gravity, 0.0f), new Vector3(triangleNormal.x * triangleNormal.y, triangleNormal.y * triangleNormal.y - 1f, triangleNormal.z * triangleNormal.y));
                 //var acceleration = gravity * new Vector3(triangleNormal.x * triangleNormal.z, triangleNormal.y * triangleNormal.z, triangleNormal.z * triangleNormal.z - 1);
                 //acceleration = gravity * new Vector3(triangleNormal.x * triangleNormal.y, triangleNormal.z * triangleNormal.y, triangleNormal.y * triangleNormal.y - 1f);
-                
+                //Debug.Log("acc2: " + acceleration);
+
                 var newVelocity = velocity + acceleration * Time.fixedDeltaTime;
                 velocity = newVelocity;
 
@@ -116,7 +128,19 @@ public class RollingBall : MonoBehaviour
                 }
 
             }
-            // else { Debug.Log("Ball is not inside triangle"); }
+            else 
+            {
+                //Debug.Log("Ball is not inside triangle"); 
+                //Vector3 gravity3D = { 0.0f, -9.81f, 0.0f };
+                Vector3 force = mass * new Vector3(0f, gravity, 0f);
+                Vector3 newPos = transform.position + velocity * Time.fixedDeltaTime;
+                velocity += force * Time.fixedDeltaTime;
+
+                transform.position = newPos;
+            }
+
+            
+
         }
     }
 }
