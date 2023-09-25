@@ -105,7 +105,7 @@ public class ballMovement : MonoBehaviour
 
                 // Calculating acceleration
                 Vector3 gravityProjection = -Vector3.Dot(gravity, triangleNormal) * triangleNormal;
-                Debug.Log("gravityp: " + gravityProjection);
+                Debug.Log("gravityp: " + gravityProjection); 
                 //Debug.Log("gravity: " + gravity);
                 Debug.Log("TriangleNormal: " + triangleNormal);
                 Debug.Log("TriangleNormalnonNormalized: " + triangleNormalnonNormalized);
