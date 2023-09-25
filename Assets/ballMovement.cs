@@ -65,12 +65,14 @@ public class ballMovement : MonoBehaviour
                 TriangleNumber++;
             }
 
-            //Debug.Log("v0: " + v0 + " | v1: " + v1 + " | v2: " + v2);
+            Debug.Log("v0: " + v0 + " | v1: " + v1 + " | v2: " + v2);
             //Debug.Log("i: " + i);
 
             Vector3 v0v1 = v1 - v0;
             Vector3 v0v2 = v2 - v0;
             Vector3 v0bp = ballPosition - v0;
+
+            Debug.Log("v0v1: " + v0v1 + " | v0v2: " + v0v2);
 
             float dot00 = Vector3.Dot(v0v1, v0v1);
             float dot01 = Vector3.Dot(v0v1, v0v2);
@@ -99,15 +101,18 @@ public class ballMovement : MonoBehaviour
                 //Debug.Log("Ball is inside triangle");
 
                 triangleNormal = Vector3.Cross(v1 - v0, v2 - v0).normalized;
+                var triangleNormalnonNormalized = Vector3.Cross(v1 - v0, v2 - v0); 
 
                 // Calculating acceleration
                 Vector3 gravityProjection = -Vector3.Dot(gravity, triangleNormal) * triangleNormal;
-                //Debug.Log("gravityp: " + gravityProjection);
+                Debug.Log("gravityp: " + gravityProjection);
                 //Debug.Log("gravity: " + gravity);
                 Debug.Log("TriangleNormal: " + triangleNormal);
+                Debug.Log("TriangleNormalnonNormalized: " + triangleNormalnonNormalized);
                 //Debug.Log("TriangleNumber: " + TriangleNumber);
                 acceleration = gravityProjection + gravity;
 
+                Debug.Log("Acceleration: " + acceleration + " | Velocity: " + velocity);
                 //Debug.Log("velocity: " + velocity);
 
                 var newVelocity = velocity + acceleration * Time.deltaTime;
@@ -126,6 +131,8 @@ public class ballMovement : MonoBehaviour
                     Debug.Log("New triangle");
 
                     previousNormal = triangleNormal;
+
+
                 }
             }
             else
